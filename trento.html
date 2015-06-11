@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Driven-dissipative toroidal Landau levels in cavity arrays. Introduction to the Julia language.</title>
+<meta name="author" content="(Andrei Berceanu)"/>
+
+<link rel="stylesheet" href="./css/reveal.css"/>
+<link rel="stylesheet" href="./css/theme/white.css" id="theme"/>
+<link rel="stylesheet" href="./local.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1>Driven-dissipative toroidal Landau levels in cavity arrays. Introduction to the Julia language.</h1>
+<h2>Andrei Berceanu</h2>
+<h2><a href="mailto:berceanu@runbox.com">berceanu@runbox.com</a></h2>
+<h2></h2>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-sec-1">Motivation</a></li>
+<li><a href="#/slide-sec-2">Momentum space magnetism</a></li>
+<li><a href="#/slide-sec-3">Harper-Hofstadter model</a></li>
+<li><a href="#/slide-sec-4">Harper-Hofstadter model</a></li>
+<li><a href="#/slide-sec-5">Harper-Hofstadter model</a></li>
+<li><a href="#/slide-sec-6">Non Abelian correction</a></li>
+<li><a href="#/slide-sec-7">Driving and dissipation</a></li>
+<li><a href="#/slide-sec-8">Selection rules: \(\delta\)&#x2013;pump</a></li>
+<li><a href="#/slide-sec-9">Selection rules: Gaussian pump</a></li>
+<li><a href="#/slide-sec-10">Intermezzo: Hitting the edge</a></li>
+<li><a href="#/slide-sec-11">Homogeneous &amp; random pumping</a></li>
+<li><a href="#/slide-sec-12">Experimental proposal</a></li>
+<li><a href="#/slide-sec-13">Experimental proposal</a></li>
+<li><a href="#/slide-sec-14">Julia</a></li>
+<li><a href="#/slide-sec-15">First contact</a></li>
+<li><a href="#/slide-sec-16">Multiple dispatch</a></li>
+<li><a href="#/slide-sec-17">User-defined types</a></li>
+<li><a href="#/slide-sec-18">Julia is..</a></li>
+<li><a href="#/slide-sec-19">Interactive computation with Jupyter</a></li>
+</ul>
+</div>
+</div>
+</section>
+<p>
+##+REVEAL<sub>MATHJAX</sub><sub>URL</sub>: MathJax/MathJax.js?config=TeX-AMS-MML<sub>HTMLorMML</sub>
+</p>
+
+<section>
+<section id="slide-sec-1">
+<h2 id="sec-1">Motivation</h2>
+<ul>
+<li>ultracold gases: PRL 111, 185301 (2013), PRL 111, 185302 (2013)</li>
+
+<li>classical circuits: arXiv:1309.0878 (2013)</li>
+
+<li>classical pendula (two copies of HH model): arXiv:1503.06808</li>
+
+<li>solid-state superlattices: Nature 497, 598 (2013), Nat Phys 10, 525 (2014)</li>
+
+<li>silicon photonics: Nature Photonics 7, 1001 (2013)</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-2">
+<h2 id="sec-2">Momentum space magnetism</h2>
+<ul>
+<li>model Hamiltonian</li>
+
+</ul>
+<p>
+\(H=\mathcal{H}_0+\frac{1}{2}\kappa \sum_{m,n}\left[(m-m_0)^{2}+(n-n_0)^{2}\right]\hat{a}_{m,n}^{\dagger}\hat{a}_{m,n}\)
+</p>
+
+<ul>
+<li>dual in momentum space</li>
+
+</ul>
+<p>
+\(\widetilde{H} = E_n(\mathbf{p}) + \frac{\kappa}{2} [i\nabla_{\mathbf{p}} + \mathcal{A}_n(\mathbf{p})]^2\)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-3">
+<h2 id="sec-3">Harper-Hofstadter model</h2>
+<p>
+\(\mathcal{H}_0=-J\sum_{m,n}(e^{i \phi_{m,n}^x}\hat{a}_{m+1,n}^{\dagger}\hat{a}_{m,n}+e^{i \phi_{m,n}^y}\hat{a}_{m,n+1}^{\dagger}\hat{a}_{m,n}) + \text{h.c.}\)
+</p>
+
+
+<div class="figure">
+<p><img src="./images/lattice.png" alt="lattice.png" height="30%," width="30%" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-4">
+<h2 id="sec-4">Harper-Hofstadter model</h2>
+
+<div class="figure">
+<p><img src="./images/butterfly.jpg" alt="butterfly.jpg" height="40%," width="40%" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-5">
+<h2 id="sec-5">Harper-Hofstadter model</h2>
+
+<div class="figure">
+<p><img src="./images/bands.png" alt="bands.png" height="50%," width="50%" />
+</p>
+</div>
+
+<p>
+\(BW = \max_{\mathbf{p}}(E_1(\mathbf{p})) - \min_{\mathbf{p}}(E_1(\mathbf{p}))\)
+</p>
+
+<p>
+\(\Delta E = \langle E_2(\mathbf{p})\rangle_{\mathbf{p}} - \langle E_1(\mathbf{p})\rangle_{\mathbf{p}}\)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-6">
+<h2 id="sec-6">Non Abelian correction</h2>
+<p>
+\(\epsilon_{n,\beta} = E_n + \left(\beta + \frac{1}{2}\right) \kappa |\Omega_n| + \delta E\)
+</p>
+
+<p>
+\(\delta E(\mathbf{p}) = \frac{\kappa}{2} \sum_{n^{\prime} \neq n} |\mathcal{A}_{n,n^{\prime}}(\mathbf{p})|^2\)
+</p>
+
+
+<div class="figure">
+<p><img src="./images/nonabcorr.png" alt="nonabcorr.png" height="70%," width="70%" />
+</p>
+</div>
+
+<p>
+\(\eta_{\text{zpe}} = \frac{4\pi\alpha}{\kappa} (E_{\text{ex}} - \epsilon_{1,0})\)
+</p>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-7">
+<h2 id="sec-7">Driving and dissipation</h2>
+<p>
+\(i\partial_{t}a_{i,j}(t)+i\gamma a_{i,j}(t)-f_{i,j}e^{-i\omega_{0}t}=\left[a_{i,j}(t),H\right]\)
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-8">
+<h2 id="sec-8">Selection rules: \(\delta\)&#x2013;pump</h2>
+
+<div class="figure">
+<p><img src="./images/delta.png" alt="delta.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-9">
+<h2 id="sec-9">Selection rules: Gaussian pump</h2>
+
+<div class="figure">
+<p><img src="./images/gaussian.png" alt="gaussian.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-10">
+<h2 id="sec-10">Intermezzo: Hitting the edge</h2>
+
+<div class="figure">
+<p><img src="./images/edge.png" alt="edge.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-11">
+<h2 id="sec-11">Homogeneous &amp; random pumping</h2>
+
+<div class="figure">
+<p><img src="./images/homogeneous.png" alt="homogeneous.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-12">
+<h2 id="sec-12">Experimental proposal</h2>
+
+<div class="figure">
+<p><img src="./images/cyclotron.png" alt="cyclotron.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-13">
+<h2 id="sec-13">Experimental proposal</h2>
+<p>
+\(\chi_\beta (\mathbf{p}) = \mathcal{N} \sum_j e^{- i p_y j a} e^{ - ( p_x + j a l_{\Omega_n}^2 )^2 / 2 l_{\Omega_n}^2} H_\beta ( p_x / l_{\Omega_n} + j a l_{\Omega_n})\)
+</p>
+
+
+<div class="figure">
+<p><img src="./images/analytics.png" alt="analytics.png" height="60%," width="60%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-14">
+<h2 id="sec-14">Julia</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-15">
+<h2 id="sec-15">First contact</h2>
+<ul>
+<li>2 language problem</li>
+<li>vectorize everything, or else!</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-julia"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">mandel</span>(z)
+    c = z
+    maxiter = 80
+    <span style="color: #a020f0;">for</span> n = 1:maxiter
+        <span style="color: #a020f0;">if</span> <span style="color: #0000ff;">abs</span>(z) &gt; 2
+            <span style="color: #a020f0;">return</span> n-1
+        <span style="color: #a020f0;">end</span>
+        z = z^2 + c
+    <span style="color: #a020f0;">end</span>
+    <span style="color: #a020f0;">return</span> maxiter
+<span style="color: #a020f0;">end</span>
+</pre>
+</div>
+
+<ul>
+<li>C-level performance</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-16">
+<h2 id="sec-16">Multiple dispatch</h2>
+<ul>
+<li>traditional OO paradigm &#x2013; dispatch based on one argument only</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python">obj.foo(arg1, arg2, ..)
+</pre>
+</div>
+
+<ul>
+<li>Julia &#x2013; multiple dispatch</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-julia"><span style="color: #0000ff;">foo</span>(obj, arg1, arg2, ..)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-julia">julia&gt; <span style="color: #0000ff;">methods</span>(+)
+<span style="color: #b22222;"># </span><span style="color: #b22222;">139 methods for generic function "+":</span>
++(x::<span style="color: #228b22;">Bool</span>) at bool.jl:33
++(x::<span style="color: #228b22;">Bool</span>,y::<span style="color: #228b22;">Bool</span>) at bool.jl:36
++(y::<span style="color: #228b22;">FloatingPoint</span>,x::<span style="color: #228b22;">Bool</span>) at bool.jl:46
++(x::<span style="color: #228b22;">Int64</span>,y::<span style="color: #228b22;">Int64</span>) at int.jl:14
++(x::<span style="color: #228b22;">Int8</span>,y::<span style="color: #228b22;">Int8</span>) at int.jl:14
++(x::UInt8,y::UInt8) at int.jl:14
++(x::<span style="color: #228b22;">Int16</span>,y::<span style="color: #228b22;">Int16</span>) at int.jl:14
++(x::UInt16,y::UInt16) at int.jl:14
++(x::<span style="color: #228b22;">Int32</span>,y::<span style="color: #228b22;">Int32</span>) at int.jl:14
++(x::UInt32,y::UInt32) at int.jl:14
++(x::UInt64,y::UInt64) at int.jl:14
++(x::<span style="color: #228b22;">Int128</span>,y::<span style="color: #228b22;">Int128</span>) at int.jl:14
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-17">
+<h2 id="sec-17">User-defined types</h2>
+<ul>
+<li>type declaration not mandatory</li>
+<li>parametric types</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-julia"><span style="color: #a020f0;">type</span> Wavefunction{T}
+    c::<span style="color: #228b22;">Array</span>{T, 2}
+    x::<span style="color: #228b22;">Array</span>{T, 2}
+<span style="color: #a020f0;">end</span>
++{T}(psi1::Wavefunction{T}, psi2::Wavefunction{T}) =
+                        Wavefunction{T}(psi1.c + psi2.c, psi1.x + psi2.x)
++{T}(psi::Wavefunction{T}, c::<span style="color: #228b22;">Float64</span>) = Wavefunction{T}(psi.c .+ c, psi.x .+ c) 
+*{T}(c::<span style="color: #228b22;">Number</span>, psi::Wavefunction{T}) = Wavefunction{T}(c*psi.c, c*psi.x)
+/{T}(psi1::Wavefunction{T}, psi2::Wavefunction{T}) =
+                         Wavefunction{T}(psi1.c ./ psi2.c, psi1.x ./ psi2.x)
+<span style="color: #a020f0;">import</span> Base.abs
+<span style="color: #0000ff;">abs</span>(psi::Wavefunction{<span style="color: #228b22;">Complex</span>{<span style="color: #228b22;">Float64</span>}}) = Wavefunction{<span style="color: #228b22;">Float64</span>}(<span style="color: #0000ff;">abs</span>(psi.c), <span style="color: #0000ff;">abs</span>(psi.x))
+<span style="color: #a020f0;">import</span> Base.maximum
+<span style="color: #a020f0;">function</span> <span style="color: #0000ff;">maximum</span>(psi::Wavefunction{<span style="color: #228b22;">Float64</span>})
+    maxc = <span style="color: #0000ff;">maximum</span>(psi.c)
+    maxx = <span style="color: #0000ff;">maximum</span>(psi.x)
+    <span style="color: #a020f0;">return</span> <span style="color: #0000ff;">max</span>(maxc, maxx)
+<span style="color: #a020f0;">end</span>
+</pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-sec-18">
+<h2 id="sec-18">Julia is..</h2>
+<ul>
+<li>free, open-source software (MIT license)</li>
+<li>high level (Python, MATLAB)</li>
+<li>homoiconic</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-19">
+<h2 id="sec-19">Interactive computation with Jupyter</h2>
+</section>
+</section>
+</div>
+</div>
+
+<script src="./lib/js/head.min.js"></script>
+<script src="./js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+width: 1280,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: './plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+</body>
+</html>
