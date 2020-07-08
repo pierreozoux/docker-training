@@ -18,7 +18,7 @@ It is now used in many official images.
 
 ## Migrating from debian to alpine
 
- - https://packages.debian.org/wheezy/all/autoconf/filelist
+ - https://packages.debian.org/buster/all/autoconf/filelist
  - https://pkgs.alpinelinux.org/contents
 
 
@@ -31,7 +31,7 @@ It is now used in many official images.
 
 
 
-## Exrcises
+## Exercises
 
 ```
 cd exercises/alpine

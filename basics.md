@@ -25,7 +25,7 @@ You can think of it as the folder where you chroot.
 
 ## Create one with debootstrap
 
-[create a debian docker image](https://docs.docker.com/engine/userguide/eng-image/baseimages/)
+[create a debian docker image](https://docs.docker.com/develop/develop-images/baseimages/)
 
 
 ## Layer
@@ -54,14 +54,14 @@ A Dockerfile is a text document that contains all the commands you would normall
 
 [example](https://github.com/indiehosters/docker-git/blob/master/Dockerfile)
 
-[source](http://docs.docker.com/reference/builder/)
+[source](https://docs.docker.com/engine/reference/builder/)
 
 
 ## Registry
 
 Docker Registry stores and distributes images centrally. It's where you push images to and pull them from.
 
-[source](http://docs.docker.com/registry/)
+[source](https://docs.docker.com/registry/)
 
 
 https://hub.docker.com
@@ -75,14 +75,16 @@ Hands on!
 
 ## image/layer/registry/container
 
-`docker run alpine:3.5 echo hello world`
+```
+docker run alpine:3.12 echo hello world
+```
 
 
 ## Dockerfile
 
 ```bash
 cat > Dockerfile <<EOF
-FROM alpine:3.5
+FROM alpine:3.12
 CMD echo hello world
 EOF
 

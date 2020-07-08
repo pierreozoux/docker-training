@@ -31,7 +31,7 @@ https://github.com/veggiemonk/awesome-docker/
 
 
 
-## futur ~~challenges~~
+## future ~~challenges~~
 
 The docker futur is bright, here is what comes next on your road!
 

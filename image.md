@@ -28,7 +28,7 @@ We'll not detail this one because we are DevOps.
 
 ## Dockerfile
 
-[Command reference](http://docs.docker.com/reference/builder/)
+[Command reference](https://docs.docker.com/engine/reference/builder/)
 
 FROM
 
@@ -53,7 +53,7 @@ VOLUME
 ## docker build
 
 ```
-docker build -t registry/image:tag [-f Dockerfile] /path/to/conext 
+docker build -t registry/image:tag [-f Dockerfile] /path/to/context 
 ```
 
 
@@ -68,13 +68,9 @@ docker build -t registry/image:tag [-f Dockerfile] /path/to/conext
 - use tags
 
 
-## More bast practices
+## More best practices
 
-https://docs.docker.com/articles/dockerfile_best-practices/
-
-http://crosbymichael.com/dockerfile-best-practices.html
-
-http://crosbymichael.com/dockerfile-best-practices-take-2.html
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 
 https://github.com/docker-library/official-images/
 

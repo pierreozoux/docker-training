@@ -22,4 +22,4 @@ Exec into the discourse container with the discourse user and make sure you can 
 
 # volumes and ports
 
-Add volumes to persist the db and the assets, and expose discourse it to the port 80 of your host.
+Add volumes to persist the db and the assets, and expose discourse to the port 80 of your host.

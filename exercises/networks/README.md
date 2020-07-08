@@ -11,7 +11,7 @@ Inspect the redis container, and what do you see?
 
 # run in a network
 
-Start a (small) postgres conatiner in the network.
+Start a (small) postgres container in the network.
 (use these env: -e POSTGRES_USER=discourse -e POSTGRES_DB=discourse -e POSTGRES_PASSWORD=discourse)
 (Give it `postgres` name)
 

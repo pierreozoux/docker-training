@@ -56,7 +56,7 @@ The objective is to serve nginx though nginx proxy.
 
 Create an nginx image with the configuration in this folder (nginx configuration is situated in /etc/nginx/nginx.conf).
 
-Create an nginx container to proxy the nginx conainer.
+Create an nginx container to proxy the nginx container.
 The 2 containers have to be in an isolated network.
 
 help: https://docs.docker.com/engine/userguide/networking/work-with-networks/

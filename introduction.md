@@ -1,8 +1,8 @@
 # Docker
 
-### [Pierre Ozoux](https://microblog.pierre-o.fr/)
+### Pierre Ozoux
 
-19 Novembre 2017
+25 Juin 2020
 
 
 
@@ -40,7 +40,7 @@
 # meta
 
 ```
-git clone https://github.com/pierreozoux/docker-training
+git clone --recurse-submodules https://github.com/pierreozoux/docker-training
 ```
 
 
@@ -297,7 +297,3 @@ from [docker-jumpstart](https://github.com/odewahn/docker-jumpstart)
 ## Separation of concerns
 
 ![separation](/docker-img/separation.png)
-
-
-
-# 

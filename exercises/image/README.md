@@ -8,7 +8,7 @@ help:
 http://devdocs.io/docker~1.12/engine/reference/builder/index
 https://docs.docker.com/engine/reference/builder/
 
-# Build an image for echo
+# Build an image for echo (optional)
 
 Understand differences between ENTRYPOINT and CMD
 
@@ -30,12 +30,12 @@ toto
 
 ```
 git clone https://github.com/discourse/discourse.git
-git checkout v1.9.0.beta9
+git checkout v2.4.5
 ```
 
 (commit while progressing to make sure you track your progresses)
 
-2. create the dockerfile based on `ruby`
+2. create the dockerfile based on `ruby 2.6.6`
 
 Here are the instructions to install discourse in a fresh debian environment:
 Intall the project in the folder discourse in the home of user discourse.
@@ -44,12 +44,13 @@ Intall the project in the folder discourse in the home of user discourse.
 Add latest nodejs repo in debian:
 
 ```
-curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
+curl --silent --location https://deb.nodesource.com/setup_10.x | bash -
 ```
 
 Intall Following building dependencies (`apt-get update && apt-get install -y`):
 ```
 autoconf
+advancecomp
 libbz2-dev
 libfreetype6-dev
 libjpeg-dev
@@ -73,7 +74,7 @@ nodejs
 
 Compile the following packages:
 ```
-export GIFSICLE_VERSION=1.88
+export GIFSICLE_VERSION=1.91
 curl -O http://www.lcdf.org/gifsicle/gifsicle-$GIFSICLE_VERSION.tar.gz
 tar zxf gifsicle-$GIFSICLE_VERSION.tar.gz
 cd gifsicle-$GIFSICLE_VERSION
@@ -84,12 +85,26 @@ make install
 
 
 ```
-export PNGQUANT_VERSION=2.8.0
+export PNGQUANT_VERSION=2.12.1
 git clone -b $PNGQUANT_VERSION --single-branch https://github.com/pornel/pngquant
 cd pngquant
 make && make install
 ```
 (write down where is the bin installed)
+
+```
+mkdir /jemalloc-stable && cd /jemalloc-stable &&\
+      wget https://github.com/jemalloc/jemalloc/releases/download/3.6.0/jemalloc-3.6.0.tar.bz2 &&\
+      tar -xjf jemalloc-3.6.0.tar.bz2 && cd jemalloc-3.6.0 && ./configure --prefix=/usr && make && make install &&\
+      cd / && rm -rf /jemalloc-stable
+```
+
+```
+mkdir /jemalloc-new && cd /jemalloc-new &&\
+      wget https://github.com/jemalloc/jemalloc/releases/download/5.1.0/jemalloc-5.1.0.tar.bz2 &&\
+      tar -xjf jemalloc-5.1.0.tar.bz2 && cd jemalloc-5.1.0 && ./configure --prefix=/usr --with-install-suffix=5.1.0 && make build_lib && make install_lib &&\
+      cd / && rm -rf /jemalloc-new
+``` 
 
 Install the following node packages:
 ```
@@ -99,7 +114,7 @@ npm install svgo uglify-js@"<3" -g
 Configure bundle and install gems:
 ```
 bundle config build.nokogiri --use-system-libraries
-bundle install --deployment --without test --without development
+bundle install --deployment --without test --without development --retry 3 --jobs 4
 ```
 (write down where the gems are installed)
 

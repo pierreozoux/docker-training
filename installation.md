@@ -4,14 +4,13 @@
 
 ## official method
 
-[installation](https://docs.docker.com/engine/installation/)
+[installation](https://docs.docker.com/install/)
 
 
 ## Docker CE/EE
 
  - CE (edge)
-  - 17.06
-  - 17.09
+  - 19.03
  - EE
 
 

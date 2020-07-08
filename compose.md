@@ -12,7 +12,7 @@ Describe an application composed of services provided by containers.
 
 Install docker-compose
 
-http://docs.docker.com/compose/install/
+https://docs.docker.com/compose/install/
 
 
 
@@ -21,7 +21,7 @@ http://docs.docker.com/compose/install/
 docker-compose.yml
 
 ```
-version: '2'
+version: '3'
 services:
   web:
     build: .
@@ -35,7 +35,7 @@ services:
   redis:
     image: redis
     environment:
-    - MY_ENV_VARIABLe:development
+    - MY_ENV_VARIABLE:development
     - SESSION_SECRET
     volumes:
     - redis-data:/var/lib/redis
@@ -51,7 +51,7 @@ networks:
     driver: bridge
 ```
 
-[reference](http://docs.docker.com/compose/yml/)
+[reference](https://docs.docker.com/compose/compose-file/)
 
 
 # Services
@@ -83,7 +83,7 @@ docker-compose rm
 docker-compose exec
 ```
 
-[reference](http://docs.docker.com/compose/reference/overview/)
+[reference](https://docs.docker.com/compose/reference/overview/)
 
 
 

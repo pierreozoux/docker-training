@@ -96,7 +96,7 @@ expose the UDP port to inside the container
 
 ## If sending logs to stdoud/stderr
 
-Then you can specify a [log driver](https://docs.docker.com/engine/admin/logging/overview/) to docker:
+Then you can specify a [log driver](https://docs.docker.com/config/containers/logging/configure) to docker:
  - syslog
  - journald
  - gelf
@@ -119,7 +119,7 @@ That's what some people don't like
 
 
 
-# Central logging and Monitoring
+## Central logging and Monitoring
 
  - ELK
  - Prometheus
