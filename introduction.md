@@ -1,8 +1,6 @@
 # Docker
 
-### Pierre Ozoux
-
-25 Juin 2020
+8 Juillet 2020
 
 
 

@@ -10,7 +10,7 @@
   - with container IP (use inspect to get local IP)
  - mount the current index.html instead of the default one (situated in /usr/share/nginx/html) (-v)
  - expose the nginx to the Private IP of your host on the port 80
- - try to reach your peer web server!
+ - try to reach your peer web server! (if training is local)
 
 # Help
 

@@ -24,7 +24,7 @@ docker run echo toto
 toto
 ```
 
-# Build a discourse docker image
+# Build the beginning of a discourse docker image
 
 1. clone the git into a new folder:
 
@@ -56,7 +56,6 @@ libfreetype6-dev
 libjpeg-dev
 libjpeg-turbo-progs
 libtiff-dev
-libxml2
 pkg-config
 ```
 
@@ -69,54 +68,22 @@ imagemagick
 jhead
 jpegoptim
 optipng
+libxml2
 nodejs
 ```
 
-Compile the following packages:
-```
-export GIFSICLE_VERSION=1.91
-curl -O http://www.lcdf.org/gifsicle/gifsicle-$GIFSICLE_VERSION.tar.gz
-tar zxf gifsicle-$GIFSICLE_VERSION.tar.gz
-cd gifsicle-$GIFSICLE_VERSION
-./configure
-make install
-```
-(write down where is the bin installed)
-
-
-```
-export PNGQUANT_VERSION=2.12.1
-git clone -b $PNGQUANT_VERSION --single-branch https://github.com/pornel/pngquant
-cd pngquant
-make && make install
-```
-(write down where is the bin installed)
-
-```
-mkdir /jemalloc-stable && cd /jemalloc-stable &&\
-      wget https://github.com/jemalloc/jemalloc/releases/download/3.6.0/jemalloc-3.6.0.tar.bz2 &&\
-      tar -xjf jemalloc-3.6.0.tar.bz2 && cd jemalloc-3.6.0 && ./configure --prefix=/usr && make && make install &&\
-      cd / && rm -rf /jemalloc-stable
-```
-
-```
-mkdir /jemalloc-new && cd /jemalloc-new &&\
-      wget https://github.com/jemalloc/jemalloc/releases/download/5.1.0/jemalloc-5.1.0.tar.bz2 &&\
-      tar -xjf jemalloc-5.1.0.tar.bz2 && cd jemalloc-5.1.0 && ./configure --prefix=/usr --with-install-suffix=5.1.0 && make build_lib && make install_lib &&\
-      cd / && rm -rf /jemalloc-new
-``` 
-
 Install the following node packages:
 ```
-npm install svgo uglify-js@"<3" -g
+npm install svgo uglify-js -g
 ```
 
 Configure bundle and install gems:
 ```
+gem update --system
+gem install bundler --force
 bundle config build.nokogiri --use-system-libraries
 bundle install --deployment --without test --without development --retry 3 --jobs 4
 ```
-(write down where the gems are installed)
 
 The application uses 3 env variable to configure itself:
 ```
@@ -135,6 +102,8 @@ Build it with the tag `fat`!
 Good luck!
 
 (Write down the size and the number of layers of this image)
+
+(There are still many things missing, but you get the idea.)
 
 # Size does matter!
 
