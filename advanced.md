@@ -139,12 +139,8 @@ Hands on!
 docker images
 docker ps
 docker volumes
+docker system prune
 ```
-
-
-https://microblog.pierre-o.fr/2015/i-know-how-to-clean-docker
-
-https://github.com/spotify/docker-gc
 
 
 

@@ -1,12 +1,9 @@
-# Tag
-
-Reuse the debian discourse image with the build dependencies and tag it: `discourse-builder`
-
 # MultiStage build
 
-Use the MultiStage build to compile and install the binaries and the gems.
+Use the MultiStage build to create a discourse docker image, only with the web assets:
+ - /home/discourse/discourse/public
+ - /home/discourse/discourse/plugins
 
-The path of the binaries are:
-/usr/local/bin
-The path of the gems are:
-./vendor/bundle
+They will be serverd by nginx.
+
+You can find the nginx config (/etc/nginx/nginx.conf) in this folder.

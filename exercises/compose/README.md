@@ -4,7 +4,7 @@ Create a simple docker-compose file that start a small redis.
 
 # Network
 
-Create an isolated network, called backed,  and put the redis in it.
+Create an isolated network, called backend,  and put the redis in it.
 Create another isolated network called web.
 
 # Postgres
@@ -14,7 +14,6 @@ Add a small postgres container to the network.
 # Discourse
 
 Add our disourse service to the web and backend network.
-Use the build key to define this service.
 
 # Make sure it works
 
