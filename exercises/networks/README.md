@@ -19,7 +19,7 @@ Inspect it, and describe what you see.
 
 # Discourse
 
-Start an interactive `bash` in your fat dicourse image, in the network, and start it with the user `discourse`.
+Start an interactive `bash` in your the [discourse image](https://hub.docker.com/r/libresh/discourse/tags), in the network, and start it with the user `discourse`.
 Try to ping the 2 previous containers by name or hash.
 What do you see?
 
@@ -29,5 +29,3 @@ What do you see?
 rake db:migrate assets:precompile
 bundle exec rails server -b 0.0.0.0
 ```
-
-(change the puma conf in your docker to avoid deamonizing)
